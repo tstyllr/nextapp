@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { 
+  EnvelopeIcon, 
+  PhoneIcon
+} from "@heroicons/react/24/outline";
 
 export default function LoginPage() {
   const [loginMethod, setLoginMethod] = useState<"email" | "phone">("phone");
@@ -72,12 +76,14 @@ export default function LoginPage() {
               className={`tab ${loginMethod === "phone" ? "tab-active" : ""}`}
               onClick={() => setLoginMethod("phone")}
             >
+              <PhoneIcon className="w-5 h-5 mr-1" />
               手机号登录
             </a>
             <a 
               className={`tab ${loginMethod === "email" ? "tab-active" : ""}`}
               onClick={() => setLoginMethod("email")}
             >
+              <EnvelopeIcon className="w-5 h-5 mr-1" />
               邮箱登录
             </a>
           </div>
