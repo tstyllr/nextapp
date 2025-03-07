@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function LoginPage() {
-  const [loginMethod, setLoginMethod] = useState<"email" | "phone">("email");
+  const [loginMethod, setLoginMethod] = useState<"email" | "phone">("phone");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
@@ -69,16 +69,16 @@ export default function LoginPage() {
           
           <div className="tabs tabs-boxed mb-6">
             <a 
-              className={`tab ${loginMethod === "email" ? "tab-active" : ""}`}
-              onClick={() => setLoginMethod("email")}
-            >
-              邮箱登录
-            </a>
-            <a 
               className={`tab ${loginMethod === "phone" ? "tab-active" : ""}`}
               onClick={() => setLoginMethod("phone")}
             >
               手机号登录
+            </a>
+            <a 
+              className={`tab ${loginMethod === "email" ? "tab-active" : ""}`}
+              onClick={() => setLoginMethod("email")}
+            >
+              邮箱登录
             </a>
           </div>
           
@@ -86,31 +86,35 @@ export default function LoginPage() {
             {loginMethod === "email" ? (
               <>
                 <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">邮箱</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="请输入邮箱"
-                    className="input input-bordered"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
+                  <div className="flex items-center gap-4">
+                    <label className="label w-20">
+                      <span className="label-text">邮箱</span>
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="请输入邮箱"
+                      className="input input-bordered flex-1"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
                 
                 <div className="form-control mt-4">
-                  <label className="label">
-                    <span className="label-text">密码</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="请输入密码"
-                    className="input input-bordered"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
+                  <div className="flex items-center gap-4">
+                    <label className="label w-20">
+                      <span className="label-text">密码</span>
+                    </label>
+                    <input
+                      type="password"
+                      placeholder="请输入密码"
+                      className="input input-bordered flex-1"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">
                       忘记密码?
@@ -121,40 +125,44 @@ export default function LoginPage() {
             ) : (
               <>
                 <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">手机号</span>
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="请输入手机号"
-                    className="input input-bordered"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                  />
+                  <div className="flex items-center gap-4">
+                    <label className="label w-20">
+                      <span className="label-text">手机号</span>
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="请输入手机号"
+                      className="input input-bordered flex-1"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
                 
                 <div className="form-control mt-4">
-                  <label className="label">
-                    <span className="label-text">验证码</span>
-                  </label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="请输入验证码"
-                      className="input input-bordered flex-1"
-                      value={verificationCode}
-                      onChange={(e) => setVerificationCode(e.target.value)}
-                      required
-                    />
-                    <button
-                      type="button"
-                      className="btn btn-outline"
-                      onClick={handleSendVerificationCode}
-                      disabled={isSendingCode || countdown > 0}
-                    >
-                      {countdown > 0 ? `${countdown}秒` : "获取验证码"}
-                    </button>
+                  <div className="flex items-center gap-4">
+                    <label className="label w-20">
+                      <span className="label-text">验证码</span>
+                    </label>
+                    <div className="flex gap-2 flex-1">
+                      <input
+                        type="text"
+                        placeholder="请输入验证码"
+                        className="input input-bordered flex-1"
+                        value={verificationCode}
+                        onChange={(e) => setVerificationCode(e.target.value)}
+                        required
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-outline"
+                        onClick={handleSendVerificationCode}
+                        disabled={isSendingCode || countdown > 0}
+                      >
+                        {countdown > 0 ? `${countdown}秒` : "获取验证码"}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </>
