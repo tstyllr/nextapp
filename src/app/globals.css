@@ -2,3 +2,11 @@
 @plugin "daisyui" {
   themes: lemonade --default, coffee --prefersdark;
 }
+
+/* 添加优化的中文字体序列 */
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", 
+    "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei",
+    sans-serif;
+}
