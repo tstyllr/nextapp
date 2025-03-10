@@ -1,11 +1,18 @@
 import { Metadata } from "next";
+import { signUpAction } from "../actions";
 
 export const metadata: Metadata = {
   title: "注册 - 创建新账号",
   description: "注册新用户账号",
 };
 
-export default function RegisterPage() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default async function RegisterPage(props: {
+  searchParams: SearchParams;
+}) {
+  const { success, error } = await props.searchParams;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
       <div className="card w-full max-w-md bg-base-100 shadow-xl">
@@ -13,7 +20,17 @@ export default function RegisterPage() {
           <h2 className="card-title text-2xl font-bold text-center mb-6">
             创建新账号
           </h2>
-          <form className="space-y-4">
+          {success && (
+            <div className="alert alert-success mb-4">
+              <span>{success}</span>
+            </div>
+          )}
+          {error && (
+            <div className="alert alert-error mb-4">
+              <span>{error}</span>
+            </div>
+          )}
+          <form className="space-y-4" action={signUpAction}>
             <div className="form-control">
               <h3 className="text-base mb-2">电子邮箱</h3>
               <input
