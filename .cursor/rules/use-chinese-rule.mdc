@@ -1,9 +1,0 @@
----
-description: use chinese
-globs: *.tsx
-alwaysApply: false
----
-
-# Your rule content
-
-- If text is required in the user interface, please use Chinese

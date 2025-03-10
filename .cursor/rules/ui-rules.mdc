@@ -1,0 +1,11 @@
+---
+description: The rules for UI
+globs: *.tsx
+alwaysApply: false
+---
+
+# Your rule content
+
+- 这是一个中文网站，所以用户界面上尽量使用中文
+- 使用响应式设计，确保不同设备和屏幕尺寸上都能良好显示和操作
+- 使用DaisyUI为HTML文档添加样式和布局
