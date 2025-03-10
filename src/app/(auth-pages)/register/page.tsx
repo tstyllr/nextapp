@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { signUpAction } from "../actions";
-
+import SubmitButton from "./SubmitButton";
 export const metadata: Metadata = {
   title: "注册 - 创建新账号",
   description: "注册新用户账号",
@@ -55,7 +55,7 @@ export default async function RegisterPage(props: {
               </p>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary w-full">注册</button>
+              <SubmitButton />
             </div>
             <div className="text-center">
               <a href="/login" className="link link-hover text-sm">
