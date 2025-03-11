@@ -1,11 +1,21 @@
 import { Metadata } from "next";
+import { signInAction } from "../actions";
+import SubmitButton from "./SubmitButton";
 
 export const metadata: Metadata = {
   title: "登录 - 用户登录",
   description: "登录您的账号",
 };
 
-export default function LoginPage() {
+type SearchParams = {
+  success?: string;
+  error?: string;
+};
+
+export default async function LoginPage(props: { searchParams: SearchParams }) {
+  const searchParams = await props.searchParams;
+  const { success, error } = searchParams;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
       <div className="card w-full max-w-md bg-base-100 shadow-xl">
@@ -13,7 +23,7 @@ export default function LoginPage() {
           <h2 className="card-title text-2xl font-bold text-center mb-6">
             账号登录
           </h2>
-          <form className="space-y-4">
+          <form className="space-y-4" action={signInAction}>
             <div className="form-control">
               <h3 className="text-base mb-2">电子邮箱</h3>
               <input
@@ -42,8 +52,18 @@ export default function LoginPage() {
                 </a>
               </div>
             </div>
+            {success && (
+              <div className="alert alert-success mb-4">
+                <span>{success}</span>
+              </div>
+            )}
+            {error && (
+              <div className="alert alert-error mb-4">
+                <span>{error}</span>
+              </div>
+            )}
             <div className="form-control mt-6">
-              <button className="btn btn-primary w-full">登录</button>
+              <SubmitButton />
             </div>
             <div className="text-center">
               <a href="/register" className="link link-hover text-sm">
