@@ -18,10 +18,32 @@ const Navbar: FC = async ({}) => {
       </div>
       <div className="flex-none gap-2">
         {isLoggedIn ? (
-          <>
-            <div className="text-sm">欢迎，{user.email}</div>
-            <button className="btn btn-ghost btn-sm">退出登录</button>
-          </>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="text-lg flex items-center justify-center h-full">
+                  {user.email?.[0].toUpperCase()}
+                </span>
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li className="menu-title px-4 py-2">
+                <span className="text-sm opacity-70">已登录为</span>
+                <span className="font-medium truncate">{user.email}</span>
+              </li>
+              <div className="divider my-0"></div>
+              <li>
+                <button>退出登录</button>
+              </li>
+            </ul>
+          </div>
         ) : (
           <>
             <Link href="/login" className="btn btn-ghost btn-sm">
