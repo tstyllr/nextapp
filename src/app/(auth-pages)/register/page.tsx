@@ -20,20 +20,11 @@ export default async function RegisterPage(props: {
           <h2 className="card-title text-2xl font-bold text-center mb-6">
             创建新账号
           </h2>
-          {success && (
-            <div className="alert alert-success mb-4">
-              <span>{success}</span>
-            </div>
-          )}
-          {error && (
-            <div className="alert alert-error mb-4">
-              <span>{error}</span>
-            </div>
-          )}
           <form className="space-y-4" action={signUpAction}>
             <div className="form-control">
               <h3 className="text-base mb-2">电子邮箱</h3>
               <input
+                name="email"
                 type="email"
                 placeholder="请输入您的邮箱"
                 className="input input-bordered w-full"
@@ -43,6 +34,7 @@ export default async function RegisterPage(props: {
             <div className="form-control">
               <h3 className="text-base mb-2">密码</h3>
               <input
+                name="password"
                 type="password"
                 placeholder="请设置密码（至少6位字母或数字）"
                 className="input input-bordered w-full"
@@ -54,6 +46,16 @@ export default async function RegisterPage(props: {
                 密码必须包含至少6位字母或数字
               </p>
             </div>
+            {success && (
+              <div className="alert alert-success mb-4">
+                <span>{success}</span>
+              </div>
+            )}
+            {error && (
+              <div className="alert alert-error mb-4">
+                <span>{error}</span>
+              </div>
+            )}
             <div className="form-control mt-6">
               <SubmitButton />
             </div>
