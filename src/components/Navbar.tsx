@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { FC } from "react";
+import LogoutButton from "./LogoutButton";
 
 const Navbar: FC = async ({}) => {
   const supabase = await createClient();
@@ -40,7 +41,7 @@ const Navbar: FC = async ({}) => {
               </li>
               <div className="divider my-0"></div>
               <li>
-                <button>退出登录</button>
+                <LogoutButton />
               </li>
             </ul>
           </div>

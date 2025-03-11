@@ -18,6 +18,7 @@ export default function LoginPage() {
               <h3 className="text-base mb-2">电子邮箱</h3>
               <input
                 type="email"
+                name="email"
                 placeholder="请输入您的邮箱"
                 className="input input-bordered w-full"
                 required
@@ -27,6 +28,7 @@ export default function LoginPage() {
               <h3 className="text-base mb-2">密码</h3>
               <input
                 type="password"
+                name="password"
                 placeholder="请输入密码"
                 className="input input-bordered w-full"
                 required
