@@ -2,10 +2,12 @@ import { Metadata } from "next";
 import { resetPasswordAction } from "../actions";
 import SubmitButton from "./SubmitButton";
 import Navbar from "@/components/Navbar";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "重置密码",
-  description: "设置新的账号密码",
+  description: "重置您的账号密码",
 };
 
 type SearchParams = {
@@ -17,6 +19,16 @@ type SearchParams = {
 export default async function ResetPasswordPage(props: {
   searchParams: SearchParams;
 }) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // 如果用户未登录，重定向到首页
+  if (!user) {
+    redirect("/");
+  }
+
   const searchParams = await props.searchParams;
   const { token, success, error } = searchParams;
 

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { signUpAction } from "../actions";
 import SubmitButton from "./SubmitButton";
 import Navbar from "@/components/Navbar";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "注册 - 创建新账号",
@@ -16,6 +18,16 @@ type SearchParams = {
 export default async function RegisterPage(props: {
   searchParams: SearchParams;
 }) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // 如果用户已登录，重定向到首页
+  if (user) {
+    redirect("/");
+  }
+
   const { success, error } = await props.searchParams;
 
   return (
