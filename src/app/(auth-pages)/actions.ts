@@ -62,7 +62,7 @@ export const forgotPasswordAction = async (formData: FormData) => {
   }
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${origin}/auth/callback?redirect_to=/protected/reset-password`,
+    redirectTo: `${origin}/auth/callback?redirect_to=/reset-password`,
   });
 
   if (error) {
@@ -88,19 +88,11 @@ export const resetPasswordAction = async (formData: FormData) => {
   const confirmPassword = formData.get("confirmPassword") as string;
 
   if (!password || !confirmPassword) {
-    encodedRedirect(
-      "error",
-      "/protected/reset-password",
-      "密码和确认密码不能为空"
-    );
+    encodedRedirect("error", "/reset-password", "密码和确认密码不能为空");
   }
 
   if (password !== confirmPassword) {
-    encodedRedirect(
-      "error",
-      "/protected/reset-password",
-      "两次输入的密码不一致"
-    );
+    encodedRedirect("error", "/reset-password", "两次输入的密码不一致");
   }
 
   const { error } = await supabase.auth.updateUser({
@@ -108,10 +100,10 @@ export const resetPasswordAction = async (formData: FormData) => {
   });
 
   if (error) {
-    encodedRedirect("error", "/protected/reset-password", "密码更新失败");
+    encodedRedirect("error", "/reset-password", "密码更新失败");
   }
 
-  encodedRedirect("success", "/protected/reset-password", "密码已更新");
+  encodedRedirect("success", "/reset-password", "密码已更新");
 };
 
 export const signOutAction = async () => {
