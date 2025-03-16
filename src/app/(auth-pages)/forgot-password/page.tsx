@@ -10,10 +10,9 @@ export const metadata: Metadata = {
   description: "重置您的账号密码",
 };
 
-type SearchParams = {
-  success?: string;
-  error?: string;
-};
+
+type SearchParams = Promise<{ success?: string; error?: string;}>
+
 
 export default async function ForgotPasswordPage(props: {
   searchParams: SearchParams;
@@ -28,7 +27,7 @@ export default async function ForgotPasswordPage(props: {
     redirect("/");
   }
 
-  const { success, error } = props.searchParams;
+  const { success, error } = await props.searchParams;
 
   return (
     <>

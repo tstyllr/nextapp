@@ -10,10 +10,7 @@ export const metadata: Metadata = {
   description: "创建您的新账号",
 };
 
-type SearchParams = {
-  success?: string;
-  error?: string;
-};
+type SearchParams = Promise<{ success?: string; error?: string;}>
 
 export default async function RegisterPage(props: {
   searchParams: SearchParams;

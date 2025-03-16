@@ -10,11 +10,7 @@ export const metadata: Metadata = {
   description: "重置您的账号密码",
 };
 
-type SearchParams = {
-  token?: string;
-  success?: string;
-  error?: string;
-};
+type SearchParams = Promise<{ token?: string; success?: string; error?: string;}>
 
 export default async function ResetPasswordPage(props: {
   searchParams: SearchParams;

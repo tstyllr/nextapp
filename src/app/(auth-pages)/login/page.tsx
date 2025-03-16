@@ -10,10 +10,7 @@ export const metadata: Metadata = {
   description: "登录您的账号",
 };
 
-type SearchParams = {
-  success?: string;
-  error?: string;
-};
+type SearchParams = Promise<{ success?: string; error?: string;}>
 
 export default async function LoginPage(props: { searchParams: SearchParams }) {
   const supabase = await createClient();
